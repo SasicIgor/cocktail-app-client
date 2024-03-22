@@ -1,81 +1,68 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/slice/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
-    name: "",
-    email: "",
-    password: "",
-    passwordConfirmed: "",
-  };
-  
-const SignIn = () =>{
-    const [formValue, setFormValue] = useState(initialState);
+  email: "",
+  password: "",
+};
 
-  const { name, email, password, passwordConfirmed } = formValue;
+const SignIn = () => {
+  const [formValue, setFormValue] = useState(initialState);
+  const { email, password } = formValue;
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
 
   const dispatch = useDispatch();
 
-  const inputChange=(e)=>{
+  const inputChange = (e) => {
     e.preventDefault();
-    let {name,value}=e.target;
-    setFormValue({...formValue,[name]:value});
-  }
+    let { name, value } = e.target;
+    setFormValue({ ...formValue, [name]: value });
+  };
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(name&email&password&passwordConfirmed){
-      dispatch(formValue);
+    if (email && password) {
+      dispatch(login({ formValue }));
+      if(user){
+        navigate("/")
+      }
     }
-  }
+  };
 
-    return     <>
-    <h2>Sign up form</h2>
-    <form onSubmit={handleSubmit}>
-      <div>
-        <input
-          type="text"
-          value={name}
-          required
-          name="name"
-          placeholder="Enter your username"
-          onChange={inputChange}
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          value={email}
-          required
-          name="email"
-          placeholder="Enter your email"
-          onChange={inputChange}
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          value={password}
-          required
-          name="password"
-          placeholder="Enter your password"
-          onChange={inputChange}
-        ></input>
-      </div>
-      <div>
-        <input
-          type="text"
-          value={passwordConfirmed}
-          required
-          name="passwordConfirmed"
-          placeholder="Enter confirmation passowrd"
-          onChange={inputChange}
-        ></input>
-      </div>
-      <div>
-        <button type="submit">Submit registration</button>
-      </div>
-    </form>
-  </>
-}
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <h2>Sign in form</h2>
+        <div>
+          <input
+            type="text"
+            value={email}
+            required
+            name="email"
+            placeholder="Enter your email"
+            onChange={inputChange}
+          ></input>
+        </div>
+        <div>
+          <input
+            type="password"
+            value={password}
+            required
+            name="password"
+            placeholder="Enter your password"
+            onChange={inputChange}
+          ></input>
+        </div>
+        <div>
+          <button type="submit">Submit registration</button>
+        </div>
+      </form>
+    </>
+  );
+};
 
 export default SignIn;

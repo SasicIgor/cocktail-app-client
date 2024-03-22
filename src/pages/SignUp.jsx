@@ -11,7 +11,6 @@ const initialState = {
 
 const SignUp = () => {
   const [formValue, setFormValue] = useState(initialState);
-
   const { username, email, password, passwordConfirmed } = formValue;
 
   const dispatch = useDispatch();
@@ -25,15 +24,14 @@ const SignUp = () => {
   const handleSubmit=(e)=>{
     e.preventDefault();
     if(username&&email&&password&&passwordConfirmed){
-      console.log(1)
       dispatch(register({formValue}));
     }
   }
 
   return (
     <div className="form_wrapper">
-      <h2>Sign up form</h2>
       <form onSubmit={handleSubmit} className="login_form">
+      <h2>Sign up form</h2>
         <div className="input_wrapper">
           <input
             type="text"
