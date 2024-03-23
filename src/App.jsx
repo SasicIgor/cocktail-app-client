@@ -8,19 +8,30 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Contributor from "./pages/Contributor";
 import Error from "./pages/Error";
+import { CocktailLayout } from "./pages/CocktailLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout></MainLayout>,
-    errorElement: <Error></Error>,
+    element: <MainLayout/>,
+    errorElement: <Error/>,
     children: [
-      { index: true, element: <Home></Home> },
-      { path: "cocktails", element: <Cocktails></Cocktails> },
-      { path: "cocktails/:id", element: <SingleCocktail></SingleCocktail> },
-      { path: "cocktails/contributor/:author", element: <Contributor></Contributor> },
-      { path: "signup", element: <SignUp></SignUp> },
-      { path: "signin", element: <SignIn></SignIn> },
+      { index: true, element: <Home/> },
+      {
+        path: "cocktails",
+        element: <CocktailLayout/>,
+        children: [
+          {index: true, element: <Cocktails/>},
+          { path: ":id", element: <SingleCocktail/> },
+          {
+            path: "contributor/:author",
+            element: <Contributor/>,
+          },
+        ],
+      },
+
+      { path: "users/signup", element: <SignUp/> },
+      { path: "users/signin", element: <SignIn/> },
     ],
   },
 ]);
