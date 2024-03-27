@@ -9,6 +9,8 @@ import SignIn from "./pages/SignIn";
 import Contributor from "./pages/Contributor";
 import Error from "./pages/Error";
 import { CocktailLayout } from "./pages/CocktailLayout";
+import { useSelector } from "react-redux";
+
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,7 @@ const router = createBrowserRouter([
       },
 
       { path: "users/signup", element: <SignUp/> },
-      { path: "users/signin", element: <SignIn/> },
+      { path: "users/signin", element: <SignUp/> },
     ],
   },
 ]);

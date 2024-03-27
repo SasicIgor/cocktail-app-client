@@ -18,7 +18,6 @@ export const login = createAsyncThunk(
   async ({ formValue }, { rejectWithValue }) => {
     try {
       const response = await api.signIn(formValue);
-      console.log(response);
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
@@ -48,10 +47,21 @@ const authSlice = createSlice({
         state.isAuth = false;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.isAuth = true;
         state.user = action.payload.data;
+        state.isAuth = true;
       })
       .addCase(login.rejected, (state) => {
+        state.isAuth = false;
+      })
+      .addCase(register.pending, (state) => {
+        state.isAuth = false;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = action.payload.data;
+        state.isAuth = true;
+        console.log(action)
+      })
+      .addCase(register.rejected, (state) => {
         state.isAuth = false;
       });
   },
