@@ -1,13 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from "../api";
+import { deleteToken, setToken } from "../../helpers/auth";
+import { toast } from "react-toastify";
 
 export const register = createAsyncThunk(
   "/signup",
   async ({ formValue }, { rejectWithValue }) => {
     try {
       const response = await api.signUp(formValue);
+      toast.success(
+        `You have been successfully register! Welcome ${response.data.data}`
+      );
       return response.data;
     } catch (err) {
+      toast.error(err.response.data.message);
       return rejectWithValue(err.response.data);
     }
   }
@@ -18,9 +24,14 @@ export const login = createAsyncThunk(
   async ({ formValue }, { rejectWithValue }) => {
     try {
       const response = await api.signIn(formValue);
+      toast.success(
+        `You have been successfully logged in, welcome back ${response.data.data}`
+      );
+      setToken(response.data.token)
       return response.data;
     } catch (err) {
-      return rejectWithValue(err.response.data);
+      toast.error(err.response.data.message);
+      return rejectWithValue(err.response.data.message);
     }
   }
 );
@@ -35,10 +46,18 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state) => {
+      const user = localStorage.getItem("user");
+      state.user = JSON.parse(user);
       state.isAuth = true;
     },
     logout: (state) => {
       state.isAuth = false;
+      state.user = null;
+      localStorage.removeItem("user");
+      toast.success(
+        `You have been successfully logged out. I hope to see you soon!`
+      )
+      deleteToken();
     },
   },
   extraReducers: (builder) => {
@@ -49,6 +68,7 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.data;
         state.isAuth = true;
+        localStorage.setItem("user", JSON.stringify(action.payload.data));
       })
       .addCase(login.rejected, (state) => {
         state.isAuth = false;
@@ -59,7 +79,7 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.data;
         state.isAuth = true;
-        console.log(action)
+        localStorage.setItem("user", JSON.stringify(action.payload.data));
       })
       .addCase(register.rejected, (state) => {
         state.isAuth = false;

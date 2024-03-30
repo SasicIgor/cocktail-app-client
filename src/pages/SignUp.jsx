@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register, login } from "../redux/slice/authSlice";
-import { Form, useLocation } from "react-router-dom";
+import { Form, useLocation, useNavigate } from "react-router-dom";
 import {
   isEmail,
   isPasswordConfirmed,
@@ -27,7 +27,7 @@ const initialBlurState = {
 
 const SignUp = () => {
   const dispatch = useDispatch();
-
+  const navigate=useNavigate();
   //using path to determine which form is active signin or signup
   const location = useLocation();
   const type =
@@ -90,9 +90,10 @@ const SignUp = () => {
       return;
     }
     if (type == "signup") {
-      return dispatch(register({ formValue }));
+      return dispatch(register({ formValue })).unwrap().then(()=>navigate("/"));
     } else if (type == "signin") {
-      return dispatch(login({ formValue }));
+      return dispatch(login({ formValue })).unwrap().then(()=>navigate('/'));
+      
     }
 
     throw new Error("Internal server problem");
@@ -100,6 +101,7 @@ const SignUp = () => {
 
   return (
     <div className="form_wrapper">
+      
       {!validForm && (
         <p>
           You have submited invalid form. Please follow the guidelines and try
@@ -163,6 +165,7 @@ const SignUp = () => {
         {type == "signup" && <Button type="submit" label="Register" />}
         {type != "signup" && <Button type="submit" label="Login" />}
       </Form>
+      
     </div>
   );
 };

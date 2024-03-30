@@ -6,6 +6,7 @@ import { authActions } from "../redux/slice/authSlice";
 const Header = () => {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
+
   return (
     <header className="header_wrapper">
       <div>Logo</div>
@@ -44,11 +45,12 @@ const Header = () => {
         {user && (
           <ul className="login">
             <li>
-              <NavLink
+              <button
                 className="marked_link"
+                onClick={()=>dispatch(authActions.logout())}
               >
                 Logout
-              </NavLink>
+              </button>
             </li>
           </ul>
         )}
