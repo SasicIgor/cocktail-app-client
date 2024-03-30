@@ -14,10 +14,10 @@ export const glasses=[{
 }]
 
 export const method=[{
-    1:"shake",
-    2:"stir",
-    3:"direct",
-    4:"muddle",
-    5:"rolling"
+    1:"Shake",
+    2:"Stir",
+    3:"Direct",
+    4:"Muddle",
+    5:"Rolling"
 }]
 
