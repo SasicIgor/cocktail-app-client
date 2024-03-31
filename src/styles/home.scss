@@ -1,0 +1,23 @@
+@import "./mixins.scss";
+
+.home {
+  position: absolute;
+  top: 15rem;
+  left: 25rem;
+  margin: 0 auto;
+  color: $primary;
+  @include flex(center, center, column);
+  h1 {
+    font-size: xx-large;
+    @include padding;
+  }
+  p{
+    font-size: 1.5rem;
+  }
+  .buttons{
+    @include flex;
+    margin: 1rem;
+    @include padding;
+    
+  }
+}

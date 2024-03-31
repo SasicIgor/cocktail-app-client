@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./../styles/cocktailCard.scss"
 
 const CocktailCard = ({ cocktail }) => {
   const methods = JSON.parse(localStorage.getItem("method"))[0];

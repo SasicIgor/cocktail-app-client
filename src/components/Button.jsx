@@ -1,7 +1,9 @@
-const Button=({type, label})=>{
+import "./../styles/button.scss"
 
-    return(<div className="input_wrapper">
-        <button type={type}>{label}</button>
+const Button=({type, label, handleClick})=>{
+
+    return(<div className="button_wrapper">
+        <button type={type} onClick={handleClick}>{label}</button>
         </div>
     )
 }

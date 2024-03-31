@@ -1,0 +1,22 @@
+@import "./mixins.scss";
+
+.button_wrapper {
+    @include padding;
+    button{
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        border: {
+            style: solid;
+            color: $acent;
+            radius: 10px;
+            width: 2px;
+
+        }
+        font-size: 2rem;
+        color: $primary;
+        &:hover {
+            background-color: $acent;
+        }
+
+    }
+}

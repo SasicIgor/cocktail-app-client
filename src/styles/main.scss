@@ -1,0 +1,70 @@
+@import "./mixins.scss";
+
+@font-face {
+  font-family: roboto;
+  src: url(../resources/font/RobotoCondensed-Regular.ttf);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font: {
+    size: 10px;
+    family: roboto;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #f5f5f4;
+  @include link_padding;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+main {
+  // @include flex(center, center, column);
+  min-width: 100%;
+  min-height: 100vh;
+  object-fit: cover;
+  background: {
+    image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url("/images/cocktail_cover.jpg");
+    size: cover;
+    position: center;
+  }
+}
+.form_wrapper {
+  width: 50%;
+  margin: 5rem;
+  color: $secondary;
+  @include flex(center, center, column);
+  @include padding;
+  background-color: $primary;
+  box-shadow: 5px 5px 5px $secondary;
+  border-radius: 50px;
+  border: {
+    color: $secondary;
+    width: 2px;
+    style: solid;
+  }
+  .login_form {
+    .input_wrapper {
+      padding: 1rem;
+      input {
+        width: 100%;
+        border-radius: 10px;
+        padding: 0.5rem;
+      }
+    }
+  }
+}
+
+

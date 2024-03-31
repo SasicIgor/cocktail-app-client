@@ -1,0 +1,17 @@
+$primary: #f5f5f4;
+$secondary: #252b33;
+$acent: #28bdd0;
+
+@mixin flex($jc: space-between, $ai: center, $fd: row) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-direction: $fd;
+}
+@mixin padding($up: 1.5rem, $sides: 5rem) {
+  padding: $up $sides;
+}
+
+@mixin link_padding($up: 0.5rem, $sides: 0.5rem) {
+  padding: $up $sides;
+}

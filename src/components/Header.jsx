@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { authActions } from "../redux/slice/authSlice";
-
+import './../styles/header.scss'
 
 const Header = () => {
   const user = useSelector((state) => state.auth.user);
@@ -13,21 +13,21 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/" className={({isActive})=> isActive ? "active" : "link"}>Home</NavLink>
           </li>
           <li>
-            <NavLink to="cocktails">Cocktails</NavLink>
+            <NavLink to="cocktails" className={({isActive})=> isActive ? "active" : "link"}>Cocktails</NavLink>
           </li>
           {user && (
             <li>
-              <NavLink to={`cocktails/contributor/${user}`}>Contributor</NavLink>
+              <NavLink to={`cocktails/contributor/${user}`} className={({isActive})=> isActive ? "active" : "link"}>Contributor</NavLink>
             </li>
           )}
           <li>
-            <NavLink to="contributor">About</NavLink>
+            <NavLink to="contributor" className={({isActive})=> isActive ? "active" : "link"}>About</NavLink>
           </li>
           <li>
-            <NavLink to="contributor">History</NavLink>
+            <NavLink to="contributor" className={({isActive})=> isActive ? "active" : "link"}>History</NavLink>
           </li>
         </ul>
         {!user && (
@@ -38,7 +38,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="users/signin">Sign In</NavLink>
+              <NavLink to="users/signin" className={({isActive})=> isActive ? "active" : "link"}>Sign In</NavLink>
             </li>
           </ul>
         )}

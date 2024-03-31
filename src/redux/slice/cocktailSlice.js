@@ -26,7 +26,7 @@ export const newCocktail= createAsyncThunk("addcocktail", async( formValue, { re
 
 const initialState = {
   cocktails: [],
-  // originCocktails: [],
+  loading: false
 };
 
 const cocktailSlice = createSlice({
@@ -40,11 +40,16 @@ const cocktailSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getCocktails.pending, (state)=>{
+        state.loading=true
+      })
       .addCase(getCocktails.fulfilled, (state, action) => {
         state.cocktails = action.payload.data.cocktails;
+        state.loading=false
         localStorage.setItem("cocktails", JSON.stringify(action.payload.data.cocktails))
       })
       .addCase(getCocktails.rejected, (state) => {
+        state.loading=false;
         state.cocktails = [];
       })
       .addCase(newCocktail.fulfilled, (state, action) => {
