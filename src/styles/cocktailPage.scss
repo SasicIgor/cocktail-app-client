@@ -5,7 +5,7 @@
     @include flex(space-between, center, column);
     .sidebar_wrapper{
         @include flex(center, center,column);
-        width:70%;
+        width:80%;
         color: $primary;
         h1{
             font-size: 2.5rem;
@@ -13,7 +13,7 @@
         }
         .filter_field{
             @include flex;
-            width:70%;
+            width:80%;
             .search_wrapper{
                 @include flex(left, left, column);
                 font-size: 1.8rem;
@@ -43,5 +43,79 @@
         flex-wrap: wrap;
         width: 80%;
         margin: 3rem;
-      }
+      };
+    .pagination{
+        width:80%;
+        ul{
+            @include flex(center);
+            li{
+                padding: 0.5rem;
+                margin: 0.5rem;
+                .page{
+                    border: {
+                        style: solid;
+                        color: $primary;
+                        width: 1px;
+                        radius: 10px;
+    
+                    }
+                    font-size: 2rem;
+                    font-weight: 600;
+                    &:hover{
+                        background-color:$primary;
+                        color:$secondary;
+    
+                    }
+                }
+            }
+
+        }
+    }
+    
 }
+
+@media screen and (max-width: 1244px) {
+    .cocktail_page_wrapper{
+
+        .sidebar_wrapper{
+            width: 90%;
+            .filter_field{
+                width:80%;
+            }
+        };
+        .cocktail_card_wrapper{
+            width:90%;
+        }
+    
+    }
+  }
+  
+  @media screen and (max-width: 992px) {
+    .cocktail_page_wrapper{
+
+        .sidebar_wrapper{
+            width: 100%;
+            .filter_field{
+                width:80%;
+            }
+        };
+        .cocktail_card_wrapper{
+            width:90%;
+            @include flex(space-around)
+        }
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .cocktail_page_wrapper{
+
+        .sidebar_wrapper{
+            width: 100%;
+            .filter_field{
+                @include flex(center, center, column);
+                width:80%;
+            }
+        }
+    }
+  }
+  

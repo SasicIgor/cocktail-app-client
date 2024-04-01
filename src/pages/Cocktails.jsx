@@ -22,8 +22,6 @@ const Cocktails = () => {
   const lastIndex = currentPage * itemsPerPage;
   const firstIndex = lastIndex - itemsPerPage;
   const display = cocktailList.slice(firstIndex, lastIndex);
-
-  console.log(display);
   const npage = Math.ceil(cocktailList.length / itemsPerPage);
   let pages = [];
   for (let i = 0; i < npage; i++) {
@@ -66,8 +64,6 @@ const Cocktails = () => {
       }
     });
   };
-
-  console.log(cocktailList);
 
   return (
     <div className="cocktail_page_wrapper">
@@ -118,7 +114,7 @@ const Cocktails = () => {
         <ul>
           {pages.map((n, i) => (
             <li key={i}>
-              <NavLink onClick={() => changePage(n)}>{n}</NavLink>
+              <NavLink className='page' onClick={() => changePage(n)}>{n}</NavLink>
             </li>
           ))}
         </ul>

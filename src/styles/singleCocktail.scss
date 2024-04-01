@@ -1,0 +1,64 @@
+@import "./mixins.scss";
+
+.single_cocktail_wrapper {
+  min-height: 80vh;
+  width: 50%;
+  padding: 1rem;
+  @include flex(center, center, column);
+  color: $primary;
+  h2 {
+    font-size: 4rem;
+    padding: 1rem;
+    margin: 2rem;
+  }
+  .cocktail_info_field {
+    @include flex;
+    .cocktail_image {
+        width:50%;
+        height:100%;
+      img {
+        display: inline-block;
+        max-height: 500px;
+        max-width: 100%;
+        object-fit: fill;
+        border-radius: 20px;
+      }
+    };
+    .cocktail_info {
+        height: 100%;
+        font-size:2rem;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        // @include flex(center, space-between, column);
+        flex-grow: 1;
+        flex-basis: auto;
+        .p{
+            display: inline-block;
+            @include flex;
+        }
+
+    }
+  }
+  .cocktail_description_field{
+    font-size:1.5rem;
+    p{
+      padding:0.5rem;
+      margin: 0.5rem;
+    }
+
+  }
+}
+
+@media screen and (max-width:1244px){
+  
+  }
+  
+  @media screen and (max-width:992px){
+    
+  }
+  
+  @media screen and (max-width:768px){
+    
+  }

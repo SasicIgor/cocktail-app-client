@@ -19,3 +19,6 @@ export const fetchingCocktails = (cocktail = "") => {
 };
 
 export const addCocktail=(formData)=>api.post("/cocktails/contributors/makeCocktail", formData);
+export const editCocktail=(formData)=>api.patch(`/cocktails/${formData.id}`, formData);
+
+export const deleteCocktail=(id)=>api.delete(`/cocktails/${id}`);

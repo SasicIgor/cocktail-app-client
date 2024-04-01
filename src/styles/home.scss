@@ -1,14 +1,14 @@
 @import "./mixins.scss";
 
 .home {
-  position: absolute;
-  top: 15rem;
-  left: 25rem;
+  position: relative;
+  bottom: 5rem;
+  right:20rem;
   margin: 0 auto;
   color: $primary;
   @include flex(center, center, column);
   h1 {
-    font-size: xx-large;
+    font-size: 3rem;
     @include padding;
   }
   p{
@@ -19,5 +19,24 @@
     margin: 1rem;
     @include padding;
     
+  }
+}
+@media screen and (max-width:1244px){
+.home{
+  right:10rem;
+}
+}
+
+@media screen and (max-width:992px){
+  .home{
+    right:0rem;
+  } 
+}
+
+@media screen and (max-width:768px){
+  .home{
+    h1{
+      font-size: 2.5rem;
+    }
   }
 }

@@ -7,16 +7,16 @@
   position: fixed;
   width: 100%;
   z-index: 1;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   nav {
     @include flex;
-    width: 40%;
+    width: 50%;
     font: {
       size: 1.5rem;
     }
     ul {
-      width: 50%;
-      @include flex();
+      width: 40%;
+      @include flex(space-around);
       .marked_link {
         border: {
           color: $acent;
@@ -51,23 +51,38 @@
           border: {
             style: solid;
             width: 2px;
-            color:$acent;
+            color: $acent;
             radius: 10px;
-          };
+          }
           font-size: 1.7rem;
-          &:hover{
+          &:hover {
             background-color: $acent;
-            
           }
         }
       }
       .marked_link:hover {
-        background-color: $secondary;
-        color: $acent;
+        background-color: $primary;
+        color: $secondary;
       }
     }
     .login {
       justify-content: center;
+    }
+  }
+}
+
+@media screen and (max-width:992px){
+  .header_wrapper{
+    nav{
+      width:60%;
+    }
+  }
+}
+
+@media screen and (max-width:768px){
+  .header_wrapper{
+    nav{
+      width:80%;
     }
   }
 }

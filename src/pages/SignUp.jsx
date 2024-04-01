@@ -10,6 +10,7 @@ import {
 } from "../components/validations";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import "./../styles/form.scss";
 
 const initialState = {
   username: "",
@@ -27,7 +28,7 @@ const initialBlurState = {
 
 const SignUp = () => {
   const dispatch = useDispatch();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   //using path to determine which form is active signin or signup
   const location = useLocation();
   const type =
@@ -90,10 +91,13 @@ const SignUp = () => {
       return;
     }
     if (type == "signup") {
-      return dispatch(register({ formValue })).unwrap().then(()=>navigate("/"));
+      return dispatch(register({ formValue }))
+        .unwrap()
+        .then(() => navigate("/"));
     } else if (type == "signin") {
-      return dispatch(login({ formValue })).unwrap().then(()=>navigate('/'));
-      
+      return dispatch(login({ formValue }))
+        .unwrap()
+        .then(() => navigate("/"));
     }
 
     throw new Error("Internal server problem");
@@ -101,14 +105,18 @@ const SignUp = () => {
 
   return (
     <div className="form_wrapper">
-      
       {!validForm && (
         <p>
           You have submited invalid form. Please follow the guidelines and try
           again.
         </p>
       )}
-      <Form onSubmit={handleSubmit}>
+      <h1>
+        {type == "signup"
+          ? "Not a member yet? Fill up this form"
+          : "Welcomee back, please sign in"}
+      </h1>
+      <Form onSubmit={handleSubmit} className="form">
         {type == "signup" && (
           <>
             <Input
@@ -121,7 +129,7 @@ const SignUp = () => {
               required
             />
             {usernameIsInvalid && (
-              <p>
+              <p className="error">
                 Username must starts with capital letter, have 5-13 charcters,
                 numbers and letters
               </p>
@@ -137,7 +145,7 @@ const SignUp = () => {
           onBlur={(e) => handleInputBlur(e.target.name)}
           required
         />
-        {emailIsInvalid && <p>please enter a valid email</p>}
+        {emailIsInvalid && <p className="error">please enter a valid email</p>}
         <Input
           id="password"
           type="password"
@@ -147,7 +155,7 @@ const SignUp = () => {
           onBlur={(e) => handleInputBlur(e.target.name)}
           required
         />
-        {passwordIsInvalid && <p>password must have between 8-20 characters</p>}
+        {passwordIsInvalid && <p className="error">password must have between 8-20 characters</p>}
         {type == "signup" && (
           <>
             <Input
@@ -159,13 +167,12 @@ const SignUp = () => {
               onBlur={(e) => handleInputBlur(e.target.name)}
               required
             />
-            {passwordsDontMatch && <p>two passwords have to match</p>}
+            {passwordsDontMatch && <p className="error">two passwords have to match</p>}
           </>
         )}
         {type == "signup" && <Button type="submit" label="Register" />}
         {type != "signup" && <Button type="submit" label="Login" />}
       </Form>
-      
     </div>
   );
 };

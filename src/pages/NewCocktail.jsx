@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { useState } from "react";
@@ -6,6 +6,7 @@ import { glasses, method } from "../helpers/initialLocalStorage";
 import manageIngredients from "../helpers/ingredients";
 import { useDispatch, useSelector } from "react-redux";
 import { newCocktail } from "../redux/slice/cocktailSlice";
+import "./../styles/form.scss"
 
 const initialIngredientsInputState = [
   {
@@ -18,6 +19,8 @@ const startGlassValue = ["0", "Choose glass"];
 const startMethodValue = ["0", "Choose method"];
 
 const NewCocktail = () => {
+  
+  const navigate=useNavigate();
   const user=useSelector(state=> state.auth.user)
   const dispatch=useDispatch();
   //state for an input field for ingredients, displaying it dynamically
@@ -41,15 +44,16 @@ const NewCocktail = () => {
    dat.author=user
 
    console.log(dat)
-   dispatch(newCocktail(dat))
+   dispatch(newCocktail(dat)).then(() => navigate(-1))
    
 
 
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <h2>Please share your creation with us by filling up this form</h2>
+    <div className="form_wrapper">
+    <Form onSubmit={handleSubmit} className="form">
+      <h1>Please share your creation with us by filling up this form</h1>
       <Input
         label="Enter cocktail name"
         name="name"
@@ -106,6 +110,8 @@ const NewCocktail = () => {
       />
       <button type="submit">submit form</button>
     </Form>
+
+    </div>
   );
 };
 

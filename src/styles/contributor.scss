@@ -1,0 +1,43 @@
+@import "./mixins.scss";
+
+.contribution_page{
+    @include flex(center, center, column);
+    margin-top: 10rem;
+    .contribution_headline{
+        color:$primary;
+        @include flex(center, center, column);
+        padding:1rem;
+        h1{
+            padding: 1rem;
+            font-size: 3rem;
+        }
+        p{
+            font-size: 1.5rem;
+            padding: 1rem;
+        }
+        .link{
+            display: block;
+            padding: 1rem;
+            font-size: 2rem;
+            color:$secondary;
+            background-color: $acent;
+            border-radius: 20px;
+            &:hover {
+                color:$acent;
+                background-color: $secondary;
+                border: {
+                    color: $acent; 
+                    style: solid;
+                    width: 2px;
+                }
+            }
+        }
+        
+
+    };
+    .contribution_cocktails{
+        @include flex;
+        flex-wrap: wrap;
+        width: 80%;
+    }
+}

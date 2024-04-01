@@ -2,7 +2,7 @@
 
 .button_wrapper {
     @include padding;
-    button{
+    button, .sign_link{
         padding: 0.5rem 1rem;
         background-color: transparent;
         border: {

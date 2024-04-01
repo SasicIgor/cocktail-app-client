@@ -17,7 +17,7 @@ const CocktailCard = ({ cocktail }) => {
           <p>Method: {specificMethod}</p>
           <p>Difficulty: 3</p>
         </div>
-        <Link className="button" to={cocktail._id}>
+        <Link className="button" to={`/cocktails/${cocktail._id}`}>
           Explore more
         </Link>
       </div>

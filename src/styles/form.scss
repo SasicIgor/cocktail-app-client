@@ -1,0 +1,35 @@
+@import "./mixins.scss";
+
+.form_wrapper {
+  @include flex(center, center, column);
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 20px;
+
+  margin: 0 auto;
+  h1 {
+    color: $primary;
+    padding: 1rem;
+    margin: 1rem;
+  }
+  .form {
+    @include flex(space-between, center, column);
+    .input_wrapper{
+        margin: 0.5rem;
+        @include flex(center, left, column);
+        color: $primary;
+        font-size: 1.5rem;
+        input{
+            padding: 0.3rem;
+            border-radius: 10px;
+        }
+        
+    }
+    .error{
+        color: rgb(143, 31, 31);
+        font-size: 1.2rem;
+        display: inline-block;
+        width: 70%;
+
+    }
+  }
+}

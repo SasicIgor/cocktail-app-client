@@ -14,6 +14,8 @@ import { authActions } from "./redux/slice/authSlice";
 import { glasses, method } from "./helpers/initialLocalStorage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import EditCocktail from "./pages/EditCocktail";
+
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
             element: (
               <PrivateRoutes>
                 <SingleCocktail />
+              </PrivateRoutes>
+            ),
+          },
+          {
+            path: ":id/editCocktail",
+            element: (
+              <PrivateRoutes>
+                <EditCocktail />
               </PrivateRoutes>
             ),
           },

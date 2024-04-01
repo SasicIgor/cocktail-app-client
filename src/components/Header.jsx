@@ -23,12 +23,12 @@ const Header = () => {
               <NavLink to={`cocktails/contributor/${user}`} className={({isActive})=> isActive ? "active" : "link"}>Contributor</NavLink>
             </li>
           )}
-          <li>
+          {/* <li>
             <NavLink to="contributor" className={({isActive})=> isActive ? "active" : "link"}>About</NavLink>
           </li>
           <li>
             <NavLink to="contributor" className={({isActive})=> isActive ? "active" : "link"}>History</NavLink>
-          </li>
+          </li> */}
         </ul>
         {!user && (
           <ul className="login">
@@ -45,12 +45,12 @@ const Header = () => {
         {user && (
           <ul className="login">
             <li>
-              <button
+              <NavLink
                 className="marked_link"
                 onClick={()=>dispatch(authActions.logout())}
               >
                 Logout
-              </button>
+              </NavLink>
             </li>
           </ul>
         )}

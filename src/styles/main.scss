@@ -30,7 +30,8 @@ ol {
 }
 
 main {
-  // @include flex(center, center, column);
+  @include flex(center, center, column);
+  position: absolute;
   min-width: 100%;
   min-height: 100vh;
   object-fit: cover;
@@ -41,30 +42,18 @@ main {
     position: center;
   }
 }
-.form_wrapper {
-  width: 50%;
-  margin: 5rem;
-  color: $secondary;
-  @include flex(center, center, column);
-  @include padding;
-  background-color: $primary;
-  box-shadow: 5px 5px 5px $secondary;
-  border-radius: 50px;
-  border: {
-    color: $secondary;
-    width: 2px;
-    style: solid;
-  }
-  .login_form {
-    .input_wrapper {
-      padding: 1rem;
-      input {
-        width: 100%;
-        border-radius: 10px;
-        padding: 0.5rem;
-      }
-    }
+@media screen and (max-width: 1244px) {
+  html {
+    font-size: 9px;
   }
 }
 
+@media screen and (max-width: 992px) {
+  html {
+    font-size: 8px;
+  }
+}
 
+@media screen and (max-width: 768px) {
+  
+}
